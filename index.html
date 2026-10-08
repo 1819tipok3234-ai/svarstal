@@ -7,12 +7,18 @@
     <style>
         :root { --primary: #f0a031; --card-bg: rgba(38, 38, 38, 0.9); --light-bg: rgba(45, 45, 45, 0.85); }
         * { margin: 0; padding: 0; box-sizing: border-box; font-family: sans-serif; }
+        
+        /* Возвращаем надежный фон по умолчанию */
         body { background: url('bg-sparks.jpg') no-repeat center center fixed/cover; color: #fff; line-height: 1.6; padding-top: 70px; }
+        
         .site-overlay { background-color: rgba(15, 15, 15, 0.75); min-height: 100vh; width: 100%; }
         header { background-color: #111; padding: 15px 20px; position: fixed; width: 100%; top: 0; z-index: 1000; border-bottom: 2px solid var(--primary); display: flex; justify-content: space-between; align-items: center; }
+        
+        /* Исправленный и безопасный стиль логотипа-ссылки */
         .logo-link { display: flex; align-items: center; gap: 12px; color: white; text-decoration: none; cursor: pointer; }
         .logo-img { width: 40px; height: 40px; border-radius: 50%; object-fit: cover; border: 1px solid var(--primary); }
         .logo-text span { color: var(--primary); font-weight: bold; }
+        
         nav a { color: white; text-decoration: none; margin-left: 20px; }
         section { padding: 40px 20px; max-width: 1200px; margin: 0 auto; }
         .section-title { text-align: center; margin-bottom: 30px; text-transform: uppercase; }
@@ -39,10 +45,11 @@
 <body>
     <div class="site-overlay">
         <header>
-            <div class="logo-link" onclick="window.location.href=window.location.pathname;">
+            <!-- Абсолютно безопасная ссылка на обновление страницы внутри текущей папки -->
+            <a href="./" class="logo-link">
                 <img src="logo.jpg" alt="SVAR STAL" class="logo-img" onerror="this.style.display='none'">
                 <div class="logo-text">SVAR <span>STAL</span></div>
-            </div>
+            </a>
             <nav><a href="#oferta">Oferta</a><a href="#galeria">Galeria</a><a href="#kontakt">Kontakt</a></nav>
         </header>
 
@@ -80,9 +87,11 @@
                 </div>
                 <div class="contact-info">
                     <h3>Dane firmy</h3>
-                    <p><strong>Nazwa:</strong> SVAR STAL</p>
-                    <p><strong>Adres:</strong> ul. Nowa 1E, 05-230 Kobyłka, Polska</p>
-                    <p><strong>NIP:</strong> 1251816366</p>
+                    <div class="company-details">
+                        <p><strong>Nazwa:</strong> SVAR STAL</p>
+                        <p><strong>Adres:</strong> ul. Nowa 1E, 05-230 Kobyłka, Polska</p>
+                        <p><strong>NIP:</strong> 1251816366</p>
+                    </div>
                 </div>
             </div>
         </section>
@@ -115,6 +124,8 @@
             item.appendChild(overlay);
             container.appendChild(item);
         }
+        
+        // Всеядная страховка для фонового рисунка (.jpg или .png)
         window.addEventListener('DOMContentLoaded', () => {
             const t = new Image(); t.src = 'bg-sparks.jpg';
             t.onerror = () => { document.body.style.backgroundImage = "url('bg-sparks.png')"; };
