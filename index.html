@@ -50,7 +50,7 @@
         <section class="hero">
             <div class="hero-content">
                 <h1>Oferujemy profesjonalne usługi spawalnicze</h1>
-                <p>Dysponujemy wieloletnim doświadczeniem orazax zapewniamy szeroki zakres usług.</p>
+                <p>Dysponujemy wieloletnim doświadczeniem oraz zapewniamy szeroki zakres usług.</p>
                 <a href="#kontakt" class="btn">Kontakt</a>
             </div>
         </section>
@@ -60,7 +60,7 @@
             <div class="services-grid">
                 <div class="service-card"><h3>🔥 Metody TIG / MIG / MAG</h3><p>Precyzyjne spawanie różnego rodzaju elementów konstrukcyjnych.</p></div>
                 <div class="service-card"><h3>🔥 Drzwi Loftowe i Meble</h3><p>Nowoczesne drzwi, ramy krzeseł, regałów oraz nogi do stołów.</p></div>
-                <div class="service-card"><h3>🔥 Bramy, Ogrodzenia, Balustrady</h3><p>Solidne konstrukcje zewnętrzne i poręcze dopasowane do potrzeb.</p></div>
+                <div class="service-card"><h3>🔥 Bramy, Ogrodzenia, Balustrady</h3><p>Solidne></p></div>
                 <div class="service-card"><h3>🔥 Wyposażenie Hal i Linii</h3><p>Elementy systemów wyposażenia hal produkcyjnych i magazynów.</p></div>
                 <div class="service-card"><h3>🔥 Elementy Samochodowe</h3><p>Spawanie detali z branży motoryzacyjnej i transportowej.</p></div>
             </div>
@@ -100,12 +100,25 @@
         const container = document.getElementById('main-gallery');
         const lightbox = document.getElementById('lightbox');
         const lightboxImg = document.getElementById('lightbox-img');
+        
         for (let i = 1; i <= 35; i++) {
             const item = document.createElement('div');
             item.className = 'gallery-item';
             const img = document.createElement('img');
+            
+            // Сначала пробуем загрузить с Большой буквы Foto
             img.src = `Foto${i}.JPG`;
-            img.onerror = function() { item.style.display = 'none'; };
+            
+            // Если выдает ошибку (файл назван маленькими буквами), переключаем на foto
+            img.onerror = function() {
+                if (this.src.includes(`Foto${i}.JPG`)) {
+                    this.src = `foto${i}.JPG`;
+                } else {
+                    // Если файла вообще нет, скрываем ячейку
+                    item.style.display = 'none';
+                }
+            };
+            
             item.onclick = function() { lightboxImg.src = img.src; lightbox.classList.add('active'); };
             const overlay = document.createElement('div');
             overlay.className = 'gallery-overlay';
