@@ -10,9 +10,12 @@
         body { background: url('bg-sparks.jpg') no-repeat center center fixed/cover; color: #fff; line-height: 1.6; padding-top: 70px; }
         .site-overlay { background-color: rgba(15, 15, 15, 0.75); min-height: 100vh; width: 100%; }
         header { background-color: #111; padding: 15px 20px; position: fixed; width: 100%; top: 0; z-index: 1000; border-bottom: 2px solid var(--primary); display: flex; justify-content: space-between; align-items: center; }
-        .logo-block { display: flex; align-items: center; gap: 12px; }
+        
+        /* Стили для кликабельного логотипа-ссылки */
+        .logo-link { display: flex; align-items: center; gap: 12px; text-decoration: none; color: white; cursor: pointer; }
         .logo-img { width: 40px; height: 40px; border-radius: 50%; object-fit: cover; border: 1px solid var(--primary); }
         .logo-text span { color: var(--primary); font-weight: bold; }
+        
         nav a { color: white; text-decoration: none; margin-left: 20px; }
         section { padding: 40px 20px; max-width: 1200px; margin: 0 auto; }
         .section-title { text-align: center; margin-bottom: 30px; text-transform: uppercase; }
@@ -40,10 +43,11 @@
 <body>
     <div class="site-overlay">
         <header>
-            <div class="logo-block">
+            <!-- Ссылка-обертка вокруг логотипа и названия для перезагрузки сайта -->
+            <a href="/" class="logo-link">
                 <img src="logo.jpg" alt="SVAR STAL" class="logo-img" onerror="this.style.display='none'">
                 <div class="logo-text">SVAR <span>STAL</span></div>
-            </div>
+            </a>
             <nav><a href="#oferta">Oferta</a><a href="#galeria">Galeria</a><a href="#kontakt">Kontakt</a></nav>
         </header>
 
@@ -60,7 +64,7 @@
             <div class="services-grid">
                 <div class="service-card"><h3>🔥 Metody TIG / MIG / MAG</h3><p>Precyzyjne spawanie różnego rodzaju elementów konstrukcyjnych.</p></div>
                 <div class="service-card"><h3>🔥 Drzwi Loftowe i Meble</h3><p>Nowoczesne drzwi, ramy krzeseł, regałów oraz nogi do stołów.</p></div>
-                <div class="service-card"><h3>🔥 Bramy, Ogrodzenia, Balustrady</h3><p>Solidne></p></div>
+                <div class="service-card"><h3>🔥 Bramy, Ogrodzenia, Balustrady</h3><p>Solidne konstrukcje zewnętrzne i poręcze dopasowane do potrzeb.</p></div>
                 <div class="service-card"><h3>🔥 Wyposażenie Hal i Linii</h3><p>Elementy systemów wyposażenia hal produkcyjnych i magazynów.</p></div>
                 <div class="service-card"><h3>🔥 Elementy Samochodowe</h3><p>Spawanie detali z branży motoryzacyjnej i transportowej.</p></div>
             </div>
@@ -106,15 +110,12 @@
             item.className = 'gallery-item';
             const img = document.createElement('img');
             
-            // Сначала пробуем загрузить с Большой буквы Foto
             img.src = `Foto${i}.JPG`;
             
-            // Если выдает ошибку (файл назван маленькими буквами), переключаем на foto
             img.onerror = function() {
                 if (this.src.includes(`Foto${i}.JPG`)) {
                     this.src = `foto${i}.JPG`;
                 } else {
-                    // Если файла вообще нет, скрываем ячейку
                     item.style.display = 'none';
                 }
             };
