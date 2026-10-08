@@ -13,7 +13,6 @@
         }
         * { margin: 0; padding: 0; box-sizing: border-box; font-family: sans-serif; }
         
-        /* Универсальный фон: поддерживаем оба расширения одновременно */
         body { 
             background: url('bg-sparks.jpg') no-repeat center center fixed; 
             background-size: cover;
@@ -29,7 +28,7 @@
         }
         
         header { background-color: #111111; padding: 15px 20px; position: fixed; width: 100%; top: 0; z-index: 1000; border-bottom: 2px solid var(--primary); display: flex; justify-content: space-between; align-items: center; color: white; }
-        .logo-link { display: flex; align-items: center; gap: 12px; text-decoration: none; color: white; cursor: pointer; }
+        .logo-link { display: flex; align-items: center; gap: 12px; color: white; cursor: pointer; user-select: none; }
         .logo-img { width: 40px; height: 40px; border-radius: 50%; object-fit: cover; border: 1px solid var(--primary); }
         .logo-text span { color: var(--primary); font-weight: bold; }
         nav a { color: white; text-decoration: none; margin-left: 20px; }
@@ -84,10 +83,10 @@
     <div class="site-overlay">
 
         <header>
-            <a href="/" class="logo-link">
+            <div class="logo-link" onclick="window.location.href=window.location.pathname;">
                 <img src="logo.jpg" alt="SVAR STAL" class="logo-img" onerror="this.style.display='none'">
                 <div class="logo-text">SVAR <span>STAL</span></div>
-            </a>
+            </div>
             <nav><a href="#oferta">Oferta</a><a href="#galeria">Galeria</a><a href="#kontakt">Kontakt</a></nav>
         </header>
 
@@ -120,6 +119,7 @@
             <div class="contact-container">
                 <div class="contact-info">
                     <h3>Skontaktuj się z nami</h3>
+                    <!-- Обновленные кликабельные контакты -->
                     <p><strong>📬 E-mail:</strong> <a href="mailto:ihor.pavlovskih@gmail.com" class="contact-link">ihor.pavlovskih@gmail.com</a></p>
                     <p><strong>📱 Telefon:</strong> <a href="tel:+48503360203" class="contact-link">+48 503 360 203</a></p>
                     <p><strong>📍 Obszar działań:</strong> Kobyłka, Warszawa i okolice</p>
@@ -129,6 +129,7 @@
                     <div class="company-details">
                         <p><strong>Nazwa:</strong> SVAR STAL</p>
                         <p><strong>Adres:</strong> ul. Nowa 1E, 05-230 Kobyłka, Polska</p>
+                        <!-- Обновленный NIP -->
                         <p><strong>NIP:</strong> 1251816366</p>
                     </div>
                 </div>
@@ -172,12 +173,12 @@
             container.appendChild(item);
         }
 
-        // Подстраховка для фона сайта
         window.addEventListener('DOMContentLoaded', () => {
             const testImg = new Image();
             testImg.src = 'bg-sparks.jpg';
             testImg.onerror = function() {
-                // Если .jpg не нашелся, пробуем включить .png версию
                 document.body.style.backgroundImage = "url('bg-sparks.png')";
             };
         });
+    </script>
+</body>
