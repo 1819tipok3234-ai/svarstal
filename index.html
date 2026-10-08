@@ -5,75 +5,32 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>SVAR STAL - Usługi Spawalnicze</title>
     <style>
-        :root { 
-            --primary: #f0a031; 
-            --card-bg: rgba(38, 38, 38, 0.9); 
-            --light-bg: rgba(45, 45, 45, 0.85); 
-            --text-light: #ffffff; 
-        }
+        :root { --primary: #f0a031; --card-bg: rgba(38, 38, 38, 0.9); --light-bg: rgba(45, 45, 45, 0.85); }
         * { margin: 0; padding: 0; box-sizing: border-box; font-family: sans-serif; }
-        
-        body { 
-            background: url('bg-sparks.jpg') no-repeat center center fixed; 
-            background-size: cover;
-            color: var(--text-light); 
-            line-height: 1.6; 
-            padding-top: 70px; 
-        }
-
-        .site-overlay {
-            background-color: rgba(15, 15, 15, 0.75);
-            min-height: 100vh;
-            width: 100%;
-        }
-        
-        header { background-color: #111111; padding: 15px 20px; position: fixed; width: 100%; top: 0; z-index: 1000; border-bottom: 2px solid var(--primary); display: flex; justify-content: space-between; align-items: center; color: white; }
-        .logo-link { display: flex; align-items: center; gap: 12px; color: white; cursor: pointer; user-select: none; }
+        body { background: url('bg-sparks.jpg') no-repeat center center fixed/cover; color: #fff; line-height: 1.6; padding-top: 70px; }
+        .site-overlay { background-color: rgba(15, 15, 15, 0.75); min-height: 100vh; width: 100%; }
+        header { background-color: #111; padding: 15px 20px; position: fixed; width: 100%; top: 0; z-index: 1000; border-bottom: 2px solid var(--primary); display: flex; justify-content: space-between; align-items: center; }
+        .logo-link { display: flex; align-items: center; gap: 12px; color: white; text-decoration: none; cursor: pointer; }
         .logo-img { width: 40px; height: 40px; border-radius: 50%; object-fit: cover; border: 1px solid var(--primary); }
         .logo-text span { color: var(--primary); font-weight: bold; }
         nav a { color: white; text-decoration: none; margin-left: 20px; }
-        
-        section { padding: 50px 20px; max-width: 1200px; margin: 0 auto; }
-        .section-title { text-align: center; margin-bottom: 40px; text-transform: uppercase; color: var(--text-light); letter-spacing: 1px; }
-        
-        .hero {
-            background: linear-gradient(rgba(0,0,0,0.65), rgba(0,0,0,0.65)), url('welding.jpg') no-repeat center center/cover;
-            height: 65vh;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            text-align: center;
-            color: var(--text-light);
-            padding: 20px;
-            border-radius: 8px;
-            margin: 20px auto;
-            max-width: 1200px;
-            border: 1px solid #444;
-        }
-        .hero-content h1 { font-size: 40px; margin-bottom: 15px; text-transform: uppercase; letter-spacing: 1px; }
-        .hero-content p { font-size: 18px; max-width: 700px; margin: 0 auto 25px auto; color: #ddd; }
-
-        .btn { background-color: var(--primary); color: #000; padding: 14px 35px; text-decoration: none; font-weight: bold; border-radius: 4px; text-transform: uppercase; display: inline-block; transition: background 0.3s; }
-        .btn:hover { background-color: #d9881a; }
-        
+        section { padding: 40px 20px; max-width: 1200px; margin: 0 auto; }
+        .section-title { text-align: center; margin-bottom: 30px; text-transform: uppercase; }
+        .hero { background: linear-gradient(rgba(0,0,0,0.65), rgba(0,0,0,0.65)), url('welding.jpg') no-repeat center center/cover; height: 60vh; display: flex; align-items: center; justify-content: center; text-align: center; border-radius: 8px; margin: 20px auto; border: 1px solid #444; }
+        .hero-content h1 { font-size: 36px; margin-bottom: 15px; text-transform: uppercase; }
         .services-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 20px; margin-bottom: 40px; }
-        .service-card { background: var(--card-bg); padding: 25px; border-radius: 8px; box-shadow: 0 4px 15px rgba(0,0,0,0.5); border-top: 4px solid var(--primary); border-left: 1px solid #444; border-right: 1px solid #444; border-bottom: 1px solid #444; backdrop-filter: blur(5px); }
-        .service-card h3 { color: var(--primary); margin-bottom: 12px; font-size: 19px; }
-        .service-card p { color: #ccc; font-size: 15px; }
-        
+        .service-card { background: var(--card-bg); padding: 20px; border-radius: 8px; border-top: 4px solid var(--primary); border-left: 1px solid #444; border-right: 1px solid #444; border-bottom: 1px solid #444; backdrop-filter: blur(5px); }
+        .service-card h3 { color: var(--primary); margin-bottom: 10px; }
         .gallery-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); gap: 15px; }
-        .gallery-item { position: relative; overflow: hidden; border-radius: 6px; height: 250px; background: #222; cursor: pointer; border: 1px solid #444; box-shadow: 0 4px 15px rgba(0,0,0,0.5); }
-        .gallery-item img { width: 100%; height: 100%; object-fit: cover; transition: transform 0.3s; }
-        .gallery-item:hover img { transform: scale(1.05); }
-        .gallery-overlay { position: absolute; bottom: 0; left: 0; right: 0; background: rgba(0,0,0,0.8); color: white; padding: 12px; font-size: 14px; text-align: center; border-top: 1px solid rgba(255,255,255,0.1); }
-        
-        .contact-container { background: rgba(17, 17, 17, 0.95); color: white; padding: 40px; border-radius: 8px; display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 30px; margin-top: 20px; border: 1px solid #444; backdrop-filter: blur(5px); }
-        .contact-info h3 { color: var(--primary); margin-bottom: 15px; font-size: 20px; }
-        .contact-info p { margin-bottom: 12px; color: #ddd; }
+        .gallery-item { position: relative; overflow: hidden; border-radius: 6px; height: 250px; background: #222; cursor: pointer; border: 1px solid #444; }
+        .gallery-item img { width: 100%; height: 100%; object-fit: cover; }
+        .gallery-overlay { position: absolute; bottom: 0; left: 0; right: 0; background: rgba(0,0,0,0.8); padding: 10px; font-size: 14px; text-align: center; }
+        .contact-container { background: rgba(17,17,17,0.95); padding: 35px; border-radius: 8px; display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 30px; border: 1px solid #444; backdrop-filter: blur(5px); }
+        .contact-info h3 { color: var(--primary); margin-bottom: 15px; }
+        .contact-info p { margin-bottom: 10px; }
         .contact-link { color: #fff; text-decoration: none; }
         .contact-link:hover { color: var(--primary); text-decoration: underline; }
-        footer { text-align: center; padding: 30px; color: #886; font-size: 13px; background-color: #0d0d0d; margin-top: 50px; border-top: 1px solid #333; }
-
+        footer { text-align: center; padding: 25px; color: #886; font-size: 13px; background-color: #0d0d0d; margin-top: 40px; }
         .lightbox { display: none; position: fixed; top: 0; left: 0; width: 100%; height: 100%; background: rgba(0,0,0,0.95); z-index: 2000; justify-content: center; align-items: center; cursor: pointer; }
         .lightbox.active { display: flex; }
         .lightbox img { max-width: 92%; max-height: 92%; border-radius: 4px; border: 1px solid #444; }
@@ -81,7 +38,6 @@
 </head>
 <body>
     <div class="site-overlay">
-
         <header>
             <div class="logo-link" onclick="window.location.href=window.location.pathname;">
                 <img src="logo.jpg" alt="SVAR STAL" class="logo-img" onerror="this.style.display='none'">
@@ -94,7 +50,6 @@
             <div class="hero-content">
                 <h1>Oferujemy profesjonalne usługi spawalnicze</h1>
                 <p>Dysponujemy wieloletnim doświadczeniem oraz zapewniamy szeroki zakres usług.</p>
-                <a href="#kontakt" class="btn">Kontakt</a>
             </div>
         </section>
 
@@ -119,25 +74,20 @@
             <div class="contact-container">
                 <div class="contact-info">
                     <h3>Skontaktuj się z nami</h3>
-                    <!-- Обновленные кликабельные контакты -->
                     <p><strong>📬 E-mail:</strong> <a href="mailto:ihor.pavlovskih@gmail.com" class="contact-link">ihor.pavlovskih@gmail.com</a></p>
                     <p><strong>📱 Telefon:</strong> <a href="tel:+48503360203" class="contact-link">+48 503 360 203</a></p>
                     <p><strong>📍 Obszar działań:</strong> Kobyłka, Warszawa i okolice</p>
                 </div>
                 <div class="contact-info">
                     <h3>Dane firmy</h3>
-                    <div class="company-details">
-                        <p><strong>Nazwa:</strong> SVAR STAL</p>
-                        <p><strong>Adres:</strong> ul. Nowa 1E, 05-230 Kobyłka, Polska</p>
-                        <!-- Обновленный NIP -->
-                        <p><strong>NIP:</strong> 1251816366</p>
-                    </div>
+                    <p><strong>Nazwa:</strong> SVAR STAL</p>
+                    <p><strong>Adres:</strong> ul. Nowa 1E, 05-230 Kobyłka, Polska</p>
+                    <p><strong>NIP:</strong> 1251816366</p>
                 </div>
             </div>
         </section>
 
         <footer><p>&copy; 2026 SVAR STAL. Wszelkie prawa zastrzeżone.</p></footer>
-
     </div>
 
     <div class="lightbox" id="lightbox" onclick="this.classList.remove('active')">
@@ -148,22 +98,15 @@
         const container = document.getElementById('main-gallery');
         const lightbox = document.getElementById('lightbox');
         const lightboxImg = document.getElementById('lightbox-img');
-        
         for (let i = 1; i <= 35; i++) {
             const item = document.createElement('div');
             item.className = 'gallery-item';
             const img = document.createElement('img');
-            
             img.src = `Foto${i}.JPG`;
-            
             img.onerror = function() {
-                if (this.src.includes(`Foto${i}.JPG`)) {
-                    this.src = `foto${i}.JPG`;
-                } else {
-                    item.style.display = 'none';
-                }
+                if (this.src.includes('Foto')) { this.src = `foto${i}.JPG`; } 
+                else { item.style.display = 'none'; }
             };
-            
             item.onclick = function() { lightboxImg.src = img.src; lightbox.classList.add('active'); };
             const overlay = document.createElement('div');
             overlay.className = 'gallery-overlay';
@@ -172,13 +115,10 @@
             item.appendChild(overlay);
             container.appendChild(item);
         }
-
         window.addEventListener('DOMContentLoaded', () => {
-            const testImg = new Image();
-            testImg.src = 'bg-sparks.jpg';
-            testImg.onerror = function() {
-                document.body.style.backgroundImage = "url('bg-sparks.png')";
-            };
+            const t = new Image(); t.src = 'bg-sparks.jpg';
+            t.onerror = () => { document.body.style.backgroundImage = "url('bg-sparks.png')"; };
         });
     </script>
 </body>
+</html>
